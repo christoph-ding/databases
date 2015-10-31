@@ -8,9 +8,9 @@ var connection = mysql.createConnection({
   database: "chat"
 });
 
-connection.connect(function(err){
-  if (err) throw err;
-});
+// connection.connect(function(err){
+//   if (err) throw err;
+// });
 
 module.exports = {
   messages: {

@@ -1,4 +1,4 @@
--- CREATE DATABASE chat;
+CREATE DATABASE chat;
 
 USE chat;
 
@@ -12,6 +12,7 @@ CREATE TABLE users (
 CREATE TABLE messages (
   id int NOT NULL auto_increment,
   msgText varchar(255),
+  roomname varchar(255),
   userID int,
   PRIMARY KEY (id),
   FOREIGN KEY (userID) REFERENCES users(id)
