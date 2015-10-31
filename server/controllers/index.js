@@ -11,7 +11,6 @@ module.exports = {
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       // parse / get information from the request
-      console.log( '============================= ');
       models.messages.post(res, req.body);     
       console.log(req.body);
       // ... write that information to the correct table in the DB

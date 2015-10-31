@@ -19,7 +19,10 @@ module.exports = {
       connection.query(queryString, [], function(err, result){
         if(err) throw err;
         console.log(result);
-        res.status(200).json(result);
+        console.log("ALMOST THERE ==================== ");
+        res.status(200);  
+        res.send(result);      
+        // res.status(200).json(result);
       })
     }, // a function which produces all the messages
 
@@ -28,8 +31,6 @@ module.exports = {
       var queryString = "insert into messages (msgText, roomname) values(?, ?);";
       connection.query(queryString, [body.message, body.roomname], function(err, result){
         if(err) throw err;
-        console.log("POST MESSAGES ===========================")
-        console.log(result);
         res.send({objectid: result.insertId});
       });
       
@@ -45,8 +46,6 @@ module.exports = {
       //var queryString = "select * from users";
         connection.query(queryString, body.username, function(err, result){
           if(err) throw err;
-          console.log("POST USERS ===============================")
-          console.log(result);
           //res.writeHead(201, {});
           res.send({objectid: result.insertId});
         });
