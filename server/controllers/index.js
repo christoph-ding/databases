@@ -4,6 +4,7 @@ module.exports = {
   messages: {
     get: function (req, res) {
       //console.log('INSIDE CONTROLLER GET =========================== ');
+      models.messages.get(req, res);
 
 
 

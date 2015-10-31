@@ -14,18 +14,23 @@ connection.connect(function(err){
 
 module.exports = {
   messages: {
-    get: function () {}, // a function which produces all the messages
+    get: function (req, res) {
+      var queryString = "select * from messages;"
+      connection.query(queryString, [], function(err, result){
+        if(err) throw err;
+        console.log(result);
+        res.status(200).json(result);
+      })
+    }, // a function which produces all the messages
 
     post: function (res, body) {
       console.log("msg post!!");
-      var msg = "test123";
-      var usrid = 1;
-      var queryString = "insert into messages (msgText, userID) values('x', 4);";
-      //var queryString = "select * from messages";
-      connection.query(queryString, [msg, usrid], function(err, result){
+      var queryString = "insert into messages (msgText, roomname) values(?, ?);";
+      connection.query(queryString, [body.message, body.roomname], function(err, result){
         if(err) throw err;
-          console.log(result);
-          res.send({objectid: result.insertId});
+        console.log("POST MESSAGES ===========================")
+        console.log(result);
+        res.send({objectid: result.insertId});
       });
       
     } // a function which can be used to insert a message into the database
@@ -40,6 +45,7 @@ module.exports = {
       //var queryString = "select * from users";
         connection.query(queryString, body.username, function(err, result){
           if(err) throw err;
+          console.log("POST USERS ===============================")
           console.log(result);
           //res.writeHead(201, {});
           res.send({objectid: result.insertId});
